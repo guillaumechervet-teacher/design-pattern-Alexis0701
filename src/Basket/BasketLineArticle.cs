@@ -2,7 +2,7 @@
 
 namespace Basket
 {
-    public struct BasksetLineArticle
+    public struct BasketLineArticle
     {
         public string Id { get; set; }
         public int Number { get; set; }

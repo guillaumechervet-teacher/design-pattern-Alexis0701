@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Basket
+namespace Basket.OrientedObject
 {
     public class BasketOperation
     {
-        private readonly Infrastructure.BasketService _basketService;
+        private readonly OrientedObject.Infrastructure.BasketService _basketService;
 
-        public BasketOperation(Infrastructure.BasketService basketService)
+        public BasketOperation(OrientedObject.Infrastructure.BasketService basketService)
         {
             _basketService = basketService;
         }
@@ -16,6 +16,7 @@ namespace Basket
         public int CalculateAmout(IList<BasketLineArticle> basketLineArticles)
         {
             Domain.Basket basket = _basketService.GetBasket(basketLineArticles);
-            return basket.CalculateAmount();
+            return basket.Calculate();
         }
-    } 
+    }
+}

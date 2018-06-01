@@ -10,7 +10,7 @@ namespace Basket
 {
     public class ImperativeProgramming
     {
-        public static int CalculateBasketAmount(List<BasksetLineArticle> basketLineArticles)
+        public static int CalculateBasketAmount(List<BasketLineArticle> basketLineArticles)
         {
             var amountTotal = 0;
             foreach (var basketLineArticle in basketLineArticles)
@@ -24,16 +24,17 @@ namespace Basket
 #endif
                 // Calculate amount
                 var amount = 0;
+                var articlePrice = article.Price;
                 switch (article.Category)
                 {
                     case "food":
-                        amount += article.Price * 100 + article.Price * 12;
+                        amount += articlePrice * 100 + articlePrice * 12;
                         break;
                     case "electronic":
-                        amount += article.Price * 100 + article.Price * 20 + 4;
+                        amount += articlePrice * 100 + articlePrice * 20 + 4;
                         break;
                     case "desktop":
-                        amount += article.Price * 100 + article.Price * 20;
+                        amount += articlePrice * 100 + articlePrice * 20;
                         break;
                 }
 

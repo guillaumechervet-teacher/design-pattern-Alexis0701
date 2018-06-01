@@ -7,6 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Basket.OrientedObject;
+using Basket.OrientedObject.Infrastructure;
 
 namespace BasketTest
 {
@@ -18,7 +20,7 @@ namespace BasketTest
 
         public class BasketTest
         {
-            public List<BasksetLineArticle> BasketLineArticles { get; set; }
+            public List<BasketLineArticle> BasketLineArticles { get; set; }
             public int ExpectedPrice { get; set; }
         }
 
@@ -28,18 +30,18 @@ namespace BasketTest
             {
                 return new[]
                 { new object[] {
-                    new BasketTest() { BasketLineArticles = new List<BasksetLineArticle>
+                    new BasketTest() { BasketLineArticles = new List<BasketLineArticle>
                     {
-                        new BasksetLineArticle { Id = "1", Number = 12, Label = "Banana" },
-                        new BasksetLineArticle { Id = "2", Number = 1, Label = "Fridge electrolux" },
-                        new BasksetLineArticle { Id = "3", Number = 4, Label = "Chair" }
+                        new BasketLineArticle { Id = "1", Number = 12, Label = "Banana" },
+                        new BasketLineArticle { Id = "2", Number = 1, Label = "Fridge electrolux" },
+                        new BasketLineArticle { Id = "3", Number = 4, Label = "Chair" }
                     },
                         ExpectedPrice = 84868 }
                 }, new object[] {
-                    new BasketTest() { BasketLineArticles = new List<BasksetLineArticle>
+                    new BasketTest() { BasketLineArticles = new List<BasketLineArticle>
                     {
-                        new BasksetLineArticle { Id = "1", Number = 20, Label = "Banana" },
-                        new BasksetLineArticle { Id = "3", Number = 6, Label = "Chair" }
+                        new BasketLineArticle { Id = "1", Number = 20, Label = "Banana" },
+                        new BasketLineArticle { Id = "3", Number = 6, Label = "Chair" }
                     },
                         ExpectedPrice = 37520 }
                     },
@@ -52,8 +54,8 @@ namespace BasketTest
         public void ReturnCorrectAmoutGivenBasket(BasketTest basketTest)
         {
             var basKetService = new BasketService();
-            var basketOperation = new BasketOperation(basKetService);
-            var amountTotal = Basket.BasketOperation.CalculateAmout(basketTest.BasketLineArticles);
+            var basketOperation = new Basket.BasketOperation(basKetService);
+            var amountTotal = BasketOperation.CalculateAmout(basketTest.BasketLineArticles);
             Assert.AreEqual(amountTotal, basketTest.ExpectedPrice);
         }
     }
